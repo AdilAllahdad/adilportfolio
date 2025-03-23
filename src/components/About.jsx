@@ -4,7 +4,8 @@ import myimg from "../assets/myimg.jpeg"
 
 const About = () => {
   return (
-    <section id="about" className="bg-gray-100 py-16">
+    <div id="About">
+    <section className="bg-gray-100 py-16">
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           
@@ -47,6 +48,7 @@ const About = () => {
         </div>
       </div>
     </section>
+    </div>
   );
 };
 

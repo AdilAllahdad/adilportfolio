@@ -29,7 +29,7 @@ const Hero = () => {
             Crafting modern, responsive, and high-performance websites with React, Tailwind CSS, Node.js, and WordPress. Passionate about clean code, seamless user experiences, and scalable web solutions.
             </p>
             <button className="mt-6 bg-yellow-400 text-black font-semibold px-6 py-3 rounded-lg shadow-lg hover:bg-yellow-500 transition">
-             <Link to={<Contact/>}>Hire Me</Link> 
+            <Link to="Contact" smooth={true} duration={900}>Hire Me</Link>
             </button>
           </div>
 

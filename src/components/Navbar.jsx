@@ -19,7 +19,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = ["Home", "About", "Skills", "Projects", "Contact"];
+  const navItems = ["Home", "About", "Skills", "Experience", "Projects", "Contact"];
 
   const containerVariants = {
     hidden: { opacity: 0, y: -20 },
@@ -66,7 +66,7 @@ const Navbar = () => {
       variants={containerVariants}
       className={`fixed w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#790909] shadow-lg backdrop-blur-lg bg-opacity-90"
+          ? "bg-gradient-to-r from-purple-900 via-red-800 to-orange-900 shadow-lg backdrop-blur-lg bg-opacity-90"
           : "bg-transparent"
       }`}
     >
@@ -122,7 +122,7 @@ const Navbar = () => {
                   smooth={true}
                   duration={500}
                   onSetActive={() => setActiveSection(item.toLowerCase())}
-                  className={`relative px-3 py-2 text-sm font-medium transition-colors ${
+                  className={`relative px-3 py-2 text-sm font-medium transition-colors cursor-pointer ${
                     activeSection === item.toLowerCase()
                       ? "text-yellow-400"
                       : "text-white hover:text-yellow-400"
@@ -146,10 +146,10 @@ const Navbar = () => {
           <motion.a
             href={cv}
             download
-            whileHover={{ scale: 1.05, backgroundColor: "#eab308" }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-yellow-400 text-black px-6 py-2 rounded-full font-medium shadow-lg 
-              transition-all duration-300 flex items-center gap-2 hover:shadow-yellow-400/50"
+            className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-6 py-2 rounded-full font-medium shadow-lg 
+              transition-all duration-300 flex items-center gap-2 hover:from-yellow-500 hover:to-orange-600"
           >
             Download CV
           </motion.a>
@@ -184,7 +184,7 @@ const Navbar = () => {
                         smooth={true}
                         duration={500}
                         onClick={() => setIsOpen(false)}
-                        className="block py-3 text-lg font-medium text-white hover:text-yellow-400 transition-colors"
+                        className="block py-3 text-lg font-medium text-white hover:text-yellow-400 transition-colors cursor-pointer"
                       >
                         {item}
                       </Link>
@@ -196,8 +196,8 @@ const Navbar = () => {
                       download
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="inline-block mt-4 bg-yellow-400 text-black px-6 py-3 rounded-full font-medium 
-                        shadow-lg transition-all duration-300 hover:bg-yellow-500"
+                      className="inline-block mt-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-6 py-3 rounded-full font-medium 
+                        shadow-lg transition-all duration-300 hover:from-yellow-500 hover:to-orange-600"
                     >
                       Download CV
                     </motion.a>

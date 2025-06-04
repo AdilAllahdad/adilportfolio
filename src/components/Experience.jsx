@@ -1,52 +1,55 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaBriefcase, FaCalendar, FaMapMarkerAlt } from "react-icons/fa";
+import { FaCalendar, FaMapMarkerAlt } from "react-icons/fa";
+import firnasTechLogo from "../assets/firnas_tech1_logo.jpg";
+import systemicLogo from "../assets/systemic_agency_logo.jpg";
+import urraanLogo from "../assets/urraan_logo.jpg";
 
 const experiences = [
   {
     id: 1,
-    role: "Senior MERN Stack Developer",
-    company: "Tech Solutions Inc.",
-    location: "Remote",
-    duration: "2023 - Present",
+    role: "MERN Stack Developer",
+    company: "Firnas.tech",
+    location: "Abbottabad District, Khyber Pakhtunkhwa, Pakistan · On-site",
+    duration: "Feb 2025 - Present",
     description: [
-      "Led development of full-stack web applications using MERN technologies",
-      "Implemented responsive designs and modern UI/UX practices",
-      "Managed team of 4 junior developers and provided technical mentorship",
-      "Improved application performance by 40% through optimization",
+      "Developing full-stack web applications using MERN technologies",
+      "Building responsive and user-friendly interfaces with React.js",
+      "Creating robust backend services with Node.js and Express",
+      "Implementing modern UI/UX practices and optimizing performance",
     ],
-    skills: ["React", "Node.js", "MongoDB", "Express", "Redux", "AWS"],
-    color: "#FF6B6B",
-  },
-  {
-    id: 2,
-    role: "Full Stack Developer",
-    company: "Digital Innovators",
-    location: "Hybrid",
-    duration: "2021 - 2023",
-    description: [
-      "Developed and maintained multiple client projects using React and Node.js",
-      "Created RESTful APIs and implemented authentication systems",
-      "Collaborated with design team to implement pixel-perfect UI",
-      "Reduced loading time by 50% through code optimization",
-    ],
-    skills: ["React", "Node.js", "PostgreSQL", "TypeScript", "Docker"],
+    skills: ["Next.js", "React.js", "Node.js", "Express", "MongoDB"],
     color: "#4ECDC4",
   },
   {
-    id: 3,
-    role: "Frontend Developer",
-    company: "WebCraft Studios",
-    location: "On-site",
-    duration: "2020 - 2021",
+    id: 2,
+    role: "WordPress Developer",
+    company: "Systemic Agency",
+    location: "Abbottabad District, Khyber Pakhtunkhwa, Pakistan · On-site",
+    duration: "Apr 2023 - May 2024",
     description: [
-      "Built responsive web applications using React and modern CSS",
-      "Implemented state management using Redux and Context API",
-      "Collaborated with backend team for API integration",
-      "Improved website accessibility to WCAG 2.1 standards",
+      "Developed and maintained custom WordPress themes and plugins",
+      "Created responsive and visually appealing websites",
+      "Optimized website performance and user experience",
+      "Implemented SEO best practices and security measures",
     ],
-    skills: ["React", "CSS3", "JavaScript", "Redux", "Sass"],
-    color: "#FFE66D",
+    skills: ["WordPress", "Adobe Photoshop", "PHP", "MySQL", "JavaScript"],
+    color: "#7AB800",
+  },
+  {
+    id: 3,
+    role: "Web Developer",
+    company: "URRAAN - Runway to Digital Flight",
+    location: "Abbottabad District, Khyber Pakhtunkhwa, Pakistan · Remote",
+    duration: "Aug 2022 - Mar 2023",
+    description: [
+      "Built and maintained responsive websites",
+      "Collaborated with design team for optimal user experience",
+      "Implemented modern web development practices",
+      "Ensured cross-browser compatibility and mobile responsiveness",
+    ],
+    skills: ["HTML", "CSS", "JavaScript", "React", "Responsive Design"],
+    color: "#FF6B6B",
   },
 ];
 
@@ -77,9 +80,99 @@ const Experience = () => {
   };
 
   return (
-    <section id="experience" className="py-20 bg-gradient-to-b from-gray-100 to-white">
+    <section id="experience" className="relative py-20 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+      {/* Animated Gradient Background */}
       <motion.div
-        className="container mx-auto px-6"
+        className="absolute inset-0"
+        initial={{ opacity: 0 }}
+        animate={{ 
+          opacity: [0.3, 0.5, 0.3],
+          background: [
+            "radial-gradient(circle at 20% 20%, #790909 0%, transparent 40%)",
+            "radial-gradient(circle at 80% 80%, #5e0014 0%, transparent 40%)",
+            "radial-gradient(circle at 50% 50%, #790909 0%, transparent 40%)"
+          ]
+        }}
+        transition={{ 
+          duration: 20,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "linear"
+        }}
+        style={{
+          filter: "blur(120px)",
+          opacity: 0.05
+        }}
+      />
+
+      {/* Animated Line Pattern */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(8)].map((_, index) => (
+          <motion.div
+            key={index}
+            className="absolute w-full h-px bg-gradient-to-r from-transparent via-red-800/20 to-transparent"
+            style={{
+              top: `${(index + 1) * 12}%`,
+              left: 0,
+            }}
+            animate={{
+              x: ["-100%", "100%"],
+              opacity: [0, 1, 0]
+            }}
+            transition={{
+              duration: 15 + index * 2,
+              repeat: Infinity,
+              ease: "linear",
+              delay: index * 1.5
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Floating Elements */}
+      <div className="absolute inset-0">
+        {[...Array(5)].map((_, index) => (
+          <motion.div
+            key={index}
+            className="absolute rounded-lg"
+            style={{
+              background: `linear-gradient(225deg, rgba(121,9,9,${0.02 + index * 0.01}) 0%, rgba(94,0,20,${0.02 + index * 0.01}) 100%)`,
+              width: Math.random() * 300 + 100,
+              height: Math.random() * 300 + 100,
+              left: `${Math.random() * 90}%`,
+              top: `${Math.random() * 90}%`,
+              transform: `rotate(${Math.random() * 360}deg)`,
+              border: "1px solid rgba(121,9,9,0.05)"
+            }}
+            animate={{
+              rotate: [0, 360],
+              scale: [1, 1.1, 1],
+              opacity: [0.3, 0.5, 0.3]
+            }}
+            transition={{
+              duration: 20 + index * 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "linear"
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Subtle Grid */}
+      <div 
+        className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(121,9,9,0.3) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(121,9,9,0.3) 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px'
+        }}
+      />
+
+      <motion.div
+        className="container mx-auto px-6 relative z-10"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
@@ -91,7 +184,7 @@ const Experience = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Professional <span className="text-[#790909]">Experience</span>
+          Professional <span className="bg-gradient-to-r from-purple-900 via-red-800 to-orange-900 text-transparent bg-clip-text">Experience</span>
         </motion.h2>
         
         <motion.p
@@ -118,24 +211,34 @@ const Experience = () => {
               onHoverEnd={() => setHoveredId(null)}
               onClick={() => setSelectedId(exp.id)}
               className="bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer transform transition-all duration-300"
-            >
-              <div className="p-6">
-                <div 
-                  className="w-12 h-12 rounded-full flex items-center justify-center mb-4"
-                  style={{ backgroundColor: exp.color + '20' }}
-                >
-                  <FaBriefcase className="text-xl" style={{ color: exp.color }} />
+            >              <div className="p-6">
+                <div className="w-16 h-16 rounded-lg overflow-hidden mb-4 border-2 border-gray-100">
+                  <img 
+                    src={
+                      exp.company === "Firnas.tech" 
+                        ? firnasTechLogo 
+                        : exp.company === "Systemic Agency"
+                        ? systemicLogo
+                        : urraanLogo
+                    }
+                    alt={exp.company}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{exp.role}</h3>
-                <p className="text-[#790909] font-medium mb-4">{exp.company}</p>
-                <div className="flex items-center gap-4 text-gray-600 text-sm mb-4">
-                  <div className="flex items-center gap-1">
-                    <FaCalendar className="text-[#790909]" />
-                    <span>{exp.duration}</span>
+                <p className="bg-gradient-to-r from-purple-900 via-red-800 to-orange-900 text-transparent bg-clip-text font-medium mb-4">{exp.company}</p>
+                <div className="space-y-2 text-gray-600 text-sm mb-4">
+                  <div className="flex items-center gap-2 group">
+                    <div className="p-1.5 rounded-full bg-gradient-to-r from-purple-900/10 via-red-800/10 to-orange-900/10 group-hover:from-purple-900/20 group-hover:via-red-800/20 group-hover:to-orange-900/20 transition-colors">
+                      <FaCalendar className="text-gradient-to-r from-purple-900 via-red-800 to-orange-900 w-3.5 h-3.5" />
+                    </div>
+                    <span className="group-hover:text-[#790909] transition-colors">{exp.duration}</span>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <FaMapMarkerAlt className="text-[#790909]" />
-                    <span>{exp.location}</span>
+                  <div className="flex items-center gap-2 group">
+                    <div className="p-1.5 rounded-full bg-[#790909]/10 group-hover:bg-[#790909]/20 transition-colors">
+                      <FaMapMarkerAlt className="text-[#790909] w-3.5 h-3.5" />
+                    </div>
+                    <span className="group-hover:text-[#790909] transition-colors truncate">{exp.location}</span>
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2 mt-4">
@@ -182,14 +285,47 @@ const Experience = () => {
                       className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
                     >
                       ×
-                    </button>
-                    <div className="mb-6">
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                        {experiences.find(exp => exp.id === selectedId).role}
-                      </h3>
-                      <p className="text-[#790909] font-medium">
-                        {experiences.find(exp => exp.id === selectedId).company}
-                      </p>
+                    </button>                    <div className="mb-6">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="w-20 h-20 rounded-lg overflow-hidden border-2 border-gray-100">
+                          <img 
+                            src={
+                              experiences.find(exp => exp.id === selectedId).company === "Firnas.tech"
+                                ? firnasTechLogo
+                                : experiences.find(exp => exp.id === selectedId).company === "Systemic Agency"
+                                ? systemicLogo
+                                : urraanLogo
+                            }
+                            alt={experiences.find(exp => exp.id === selectedId).company}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>                        <div className="flex-1">
+                          <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                            {experiences.find(exp => exp.id === selectedId).role}
+                          </h3>
+                          <p className="bg-gradient-to-r from-purple-900 via-red-800 to-orange-900 text-transparent bg-clip-text font-medium mb-4">
+                            {experiences.find(exp => exp.id === selectedId).company}
+                          </p>
+                          <div className="flex flex-col sm:flex-row gap-4 text-gray-600 text-sm">
+                            <div className="flex items-center gap-2 group">
+                              <div className="p-1.5 rounded-full bg-[#790909]/10 group-hover:bg-[#790909]/20 transition-colors">
+                                <FaCalendar className="text-[#790909] w-4 h-4" />
+                              </div>
+                              <span className="group-hover:text-[#790909] transition-colors">
+                                {experiences.find(exp => exp.id === selectedId).duration}
+                              </span>
+                            </div>
+                            <div className="flex items-center gap-2 group">
+                              <div className="p-1.5 rounded-full bg-[#790909]/10 group-hover:bg-[#790909]/20 transition-colors">
+                                <FaMapMarkerAlt className="text-[#790909] w-4 h-4" />
+                              </div>
+                              <span className="group-hover:text-[#790909] transition-colors">
+                                {experiences.find(exp => exp.id === selectedId).location}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div className="space-y-4">
                       {experiences.find(exp => exp.id === selectedId).description.map((item, index) => (

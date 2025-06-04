@@ -3,6 +3,7 @@ import img from "../assets/img.jpg";
 import { Typewriter } from "react-simple-typewriter";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-scroll";
+import { FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 
 const Hero = () => {
   const textVariants = {
@@ -29,31 +30,94 @@ const Hero = () => {
       }
     },
     hover: {
-      scale: 1.05,
-      boxShadow: "0 20px 30px rgba(0,0,0,0.3)",
+      scale: 1.02,
+      rotateY: 10,
+      rotateX: 5,
       transition: {
-        duration: 0.3
+        duration: 0.4,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const particleVariants = {
+    animate: (i) => ({
+      y: [0, -15, 0],
+      x: [0, Math.sin(i * Math.PI) * 10, 0],
+      scale: [1, 1.2, 1],
+      opacity: [0.5, 1, 0.5],
+      transition: {
+        duration: 2 + i * 0.5,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
+    })
+  };
+
+  const glowVariants = {
+    initial: {
+      opacity: 0.5,
+      scale: 1
+    },
+    hover: {
+      opacity: [0.5, 0.8, 0.5],
+      scale: [1, 1.2, 1],
+      transition: {
+        duration: 2,
+        repeat: Infinity,
+        ease: "easeInOut"
       }
     }
   };
 
   const socialLinks = [
-    { name: "GitHub", url: "#" },
-    { name: "LinkedIn", url: "#" },
-    { name: "Twitter", url: "#" }
+    { name: "GitHub", url: "https://github.com/AdilAllahdad", icon: FaGithub },
+    { name: "LinkedIn", url: "https://www.linkedin.com/in/adil-allahdad-web-developer/", icon: FaLinkedinIn },
+    { name: "Instagram", url: "https://www.instagram.com/adil.web.dev/", icon: FaInstagram }
   ];
 
   return (
-    <section id="home" className="bg-[#790909] min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-purple-900 via-red-800 to-orange-900">
       {/* Background Animation */}
       <motion.div 
         className="absolute inset-0"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.1 }}
-        transition={{ duration: 2 }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-black to-transparent" />
-      </motion.div>
+        animate={{ 
+          opacity: [0.4, 0.6, 0.4],
+          background: [
+            "linear-gradient(to bottom right, rgba(88,28,135,0.8), rgba(185,28,28,0.6), rgba(194,65,12,0.5))",
+            "linear-gradient(to bottom right, rgba(194,65,12,0.8), rgba(88,28,135,0.6), rgba(185,28,28,0.5))",
+            "linear-gradient(to bottom right, rgba(185,28,28,0.8), rgba(194,65,12,0.6), rgba(88,28,135,0.5))",
+            "linear-gradient(45deg, rgba(88,28,135,0.8), rgba(185,28,28,0.6), rgba(194,65,12,0.5))"
+          ]
+        }}
+        transition={{ 
+          duration: 12,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Additional gradient layer for depth */}
+      <motion.div 
+        className="absolute inset-0"
+        initial={{ opacity: 0 }}
+        animate={{ 
+          opacity: [0.3, 0.5, 0.3],
+          background: [
+            "radial-gradient(circle at top left, rgba(126,34,206,0.4), transparent 70%)",
+            "radial-gradient(circle at bottom right, rgba(220,38,38,0.4), transparent 70%)",
+            "radial-gradient(circle at center, rgba(234,88,12,0.4), transparent 70%)"
+          ]
+        }}
+        transition={{ 
+          duration: 15,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "easeInOut"
+        }}
+      />
 
       <div className="container mx-auto px-6 md:px-12 lg:px-20 mt-33 pb-9 md:pb-14 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -93,7 +157,7 @@ const Hero = () => {
                 loop={true}
                 cursor
                 cursorStyle="_"
-                typeSpeed={300}
+                typeSpeed={100}
                 deleteSpeed={50}
                 delaySpeed={1500}
               />
@@ -106,77 +170,101 @@ const Hero = () => {
               animate="visible"
               transition={{ delay: 0.6 }}
             >
-              Crafting modern, responsive, and high-performance websites with React, 
-              Tailwind CSS, Node.js, and WordPress. Passionate about clean code, 
-              seamless user experiences, and scalable web solutions.
+              I craft modern, responsive, and high-performance web solutions focused on clean architecture, scalability, and delivering seamless, user-friendly experiences across both front-end and back-end.
             </motion.p>
 
             <div className="flex gap-4 mt-6">
-              <motion.button
-                whileHover={{ scale: 1.05, backgroundColor: "#eab308" }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-yellow-400 text-black font-semibold px-6 py-3 rounded-lg shadow-lg transition-all duration-300"
-              >
-                <Link to="contact" smooth={true} duration={900}>Hire Me</Link>
-              </motion.button>
+              <Link to="contact" smooth={true} duration={900}>
+                <motion.button
+                  whileHover={{ 
+                    scale: 1.05
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-semibold px-6 py-3 rounded-lg shadow-lg 
+                    transition-all duration-300 hover:from-yellow-500 hover:to-orange-600 cursor-pointer"
+                >
+                  Hire Me
+                </motion.button>
+              </Link>
 
-              <motion.button
-                whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
-                whileTap={{ scale: 0.95 }}
-                className="border-2 border-white text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all duration-300"
-              >
-                <Link to="projects" smooth={true} duration={900}>View Work</Link>
-              </motion.button>
+              <Link to="projects" smooth={true} duration={900}>
+                <motion.button
+                  whileHover={{ 
+                    scale: 1.05
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-semibold px-6 py-3 rounded-lg shadow-lg 
+                    transition-all duration-300 hover:from-yellow-500 hover:to-orange-600 cursor-pointer"
+                >
+                  View Work
+                </motion.button>
+              </Link>
             </div>
 
             {/* Social Links */}
-            <motion.div 
-              className="flex gap-4 mt-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
-            >
-              {socialLinks.map((social, index) => (
+            <div className="flex gap-4 mt-4">
+              {socialLinks.map((link, index) => (
                 <motion.a
-                  key={social.name}
-                  href={social.url}
+                  key={index}
+                  href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-yellow-400 transition-colors duration-300"
+                  className="text-white hover:text-yellow-300 transition-colors duration-300"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  {social.name}
+                  <link.icon className="text-2xl" />
                 </motion.a>
               ))}
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* Right Side - Image */}
           <motion.div
-            className="flex justify-center"
-            variants={imageVariants}
+            className="flex justify-center perspective-1000"
             initial="hidden"
             animate="visible"
             whileHover="hover"
           >
-            <motion.div
-              className="relative"
-              whileHover={{ rotate: [0, -5, 5, 0] }}
-              transition={{ duration: 0.5 }}
-            >
+            <div className="relative group">
+              {/* Floating particles */}
+              {[...Array(6)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-3 h-3 rounded-full bg-yellow-400"
+                  style={{
+                    top: `${Math.random() * 100}%`,
+                    left: `${Math.random() * 100}%`,
+                    filter: 'blur(1px)'
+                  }}
+                  custom={i}
+                  variants={particleVariants}
+                  animate="animate"
+                />
+              ))}
+              
+              {/* Main image container */}
               <motion.div
-                className="absolute inset-0 bg-yellow-400 rounded-full blur-xl"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.3 }}
-                transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
-              />
-              <img
-                src={img}
-                alt="Adil Allahdad"
-                className="w-60 md:w-80 lg:w-96 rounded-full shadow-xl relative z-10"
-              />
-            </motion.div>
+                variants={imageVariants}
+                className="relative transform-gpu"
+                style={{
+                  transformStyle: "preserve-3d"
+                }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/30 via-purple-500/30 to-red-500/30 rounded-full filter blur-xl opacity-75 group-hover:opacity-100 transition-opacity duration-300" />
+                <img
+                  src={img}
+                  alt="Profile"
+                  className="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover relative z-10 border-4 border-white/20 shadow-[0_0_30px_rgba(0,0,0,0.3)] transition-shadow duration-300 group-hover:shadow-[0_0_40px_rgba(0,0,0,0.5)]"
+                />
+                <motion.div
+                  className="absolute inset-0 rounded-full bg-gradient-to-tr from-yellow-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{
+                    transform: "translateZ(20px)"
+                  }}
+                />
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>

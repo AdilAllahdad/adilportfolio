@@ -6,11 +6,12 @@ const skills = [
     { name: "CSS", img: "https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" },
     { name: "JavaScript", img: "https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" },
     { name: "React", img: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" },
-    { name: "Tailwind", img: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" },
-    { name: "Bootstrap", img: "https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg" },
+    { name: "Next.js", img: "https://seeklogo.com/images/N/next-js-icon-logo-EE302D5DBD-seeklogo.com.png", style: { filter: "invert(1)" } },
+    { name: "Firebase", img: "https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" },    { name: "Tailwind", img: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" },    { name: "DaisyUI", img: "https://cdn.jsdelivr.net/gh/saadeghi/files@main/daisyui/logo-4.svg", style: { filter: "invert(1)" } },
+    { name: "Bootstrap", img: "https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" },
     { name: "Node.js", img: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" },
     { name: "Express.js", img: "https://e7.pngegg.com/pngimages/545/451/png-clipart-node-js-express-js-javascript-solution-stack-web-application-others-angle-text-thumbnail.png", style: { filter: "invert(1)" } },
-    { name: "MongoDB", img: "https://www.opc-router.de/wp-content/uploads/2021/03/mongodb_thumbnail.png" }, // Fixed
+    { name: "MongoDB", img: "https://www.opc-router.de/wp-content/uploads/2021/03/mongodb_thumbnail.png" },
     { name: "MySQL", img: "https://upload.wikimedia.org/wikipedia/en/d/dd/MySQL_logo.svg" },
     { name: "WordPress", img: "https://upload.wikimedia.org/wikipedia/commons/9/98/WordPress_blue_logo.svg" },
   ];
@@ -40,7 +41,7 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="py-16 bg-[#790909] text-white">
+    <section id="skills" className="py-16 bg-gradient-to-br from-purple-900 via-red-800 to-orange-900 text-white">
       <motion.div
         className="container mx-auto px-6 text-center"
         initial="hidden"
@@ -62,9 +63,8 @@ const Skills = () => {
             <motion.div
               key={index}
               variants={skillVariants}
-              whileHover={{ scale: 1.1 }}
-              className="flex flex-col items-center p-4 rounded-lg bg-[#8a1111] hover:bg-[#9c1616] 
-                transition-colors duration-300 cursor-pointer"
+              whileHover={{ scale: 1.1 }}              className="flex flex-col items-center p-4 rounded-lg bg-red-900/80 hover:bg-red-800
+                transition-colors duration-300 cursor-pointer shadow-lg"
             >
               <motion.div
                 whileHover={{ rotate: 360 }}
@@ -78,10 +78,9 @@ const Skills = () => {
                   style={skill.style}
                 />
               </motion.div>
-              <p className="text-sm md:text-base font-semibold">{skill.name}</p>
-              <div className="mt-2 w-full bg-[#6b0808] h-1 rounded-full overflow-hidden">
+              <p className="text-sm md:text-base font-semibold">{skill.name}</p>              <div className="mt-2 w-full bg-red-950 h-1 rounded-full overflow-hidden">
                 <motion.div
-                  className="h-full bg-white"
+                  className="h-full bg-red-400"
                   initial={{ width: 0 }}
                   whileInView={{ width: "100%" }}
                   transition={{ duration: 1, delay: index * 0.1 }}

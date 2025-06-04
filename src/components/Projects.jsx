@@ -124,17 +124,58 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-16 bg-gradient-to-b from-white to-gray-100 text-white min-h-screen"
+      className="py-16 min-h-screen relative overflow-hidden bg-gradient-to-br from-purple-900 via-red-800 to-orange-900"
     >
+      {/* Background Animation */}
       <motion.div
-        className="container mx-auto px-6"
+        className="absolute inset-0"
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: [0.4, 0.6, 0.4],
+          background: [
+            "linear-gradient(to bottom right, rgba(88,28,135,0.8), rgba(185,28,28,0.6), rgba(194,65,12,0.5))",
+            "linear-gradient(to bottom right, rgba(194,65,12,0.8), rgba(88,28,135,0.6), rgba(185,28,28,0.5))",
+            "linear-gradient(to bottom right, rgba(185,28,28,0.8), rgba(194,65,12,0.6), rgba(88,28,135,0.5))",
+            "linear-gradient(45deg, rgba(88,28,135,0.8), rgba(185,28,28,0.6), rgba(194,65,12,0.5))",
+          ],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* Additional gradient layer for depth */}
+      <motion.div
+        className="absolute inset-0"
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: [0.3, 0.5, 0.3],
+          background: [
+            "radial-gradient(circle at top left, rgba(126,34,206,0.4), transparent 70%)",
+            "radial-gradient(circle at bottom right, rgba(220,38,38,0.4), transparent 70%)",
+            "radial-gradient(circle at center, rgba(234,88,12,0.4), transparent 70%)",
+          ],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "easeInOut",
+        }}
+      />
+
+      <motion.div
+        className="container mx-auto px-6 relative z-10"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={containerVariants}
       >
         <motion.h2
-          className="text-4xl font-bold text-[#790909] text-center mb-6"
+          className="text-4xl font-bold text-white text-center mb-6"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -156,10 +197,10 @@ const Projects = () => {
                 setFilter(category);
                 setCurrentPage(0);
               }}
-              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 cursor-pointer ${
                 filter === category
-                  ? "bg-[#790909] text-white shadow-lg scale-105"
-                  : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                  ? "bg-gradient-to-r from-yellow-400 to-orange-500 text-black shadow-lg scale-105 hover:from-yellow-500 hover:to-orange-600"
+                  : "bg-white/10 text-white hover:bg-white/20"
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -212,7 +253,7 @@ const Projects = () => {
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
                       {project.name}
                     </h3>
-                    <p className="text-sm text-[#790909] font-medium mb-3">
+                    <p className="text-sm bg-gradient-to-r from-purple-900 via-red-800 to-orange-900 text-transparent bg-clip-text font-medium mb-3">
                       {project.category}
                     </p>
                     <p className="text-gray-600 text-sm mb-4">
@@ -223,7 +264,7 @@ const Projects = () => {
                         href={project.liveDemo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-sm font-semibold text-[#790909] hover:text-[#6b0707] transition-colors"
+                        className="flex items-center gap-2 text-sm font-semibold bg-gradient-to-r from-purple-900 via-red-800 to-orange-900 text-transparent bg-clip-text hover:opacity-80 transition-opacity"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
@@ -303,10 +344,10 @@ const Projects = () => {
               <motion.button
                 key={i}
                 onClick={() => setCurrentPage(i)}
-                className={`px-4 py-2 rounded-lg text-white shadow-lg transition-all duration-300 ${
+                className={`px-4 py-2 rounded-lg text-black shadow-lg transition-all duration-300 cursor-pointer ${
                   currentPage === i
-                    ? "bg-[#790909] scale-105"
-                    : "bg-gray-600 hover:bg-gray-700"
+                    ? "bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 scale-105"
+                    : "bg-white/10 text-white hover:bg-white/20"
                 }`}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}

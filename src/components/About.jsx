@@ -41,17 +41,95 @@ const About = () => {
 
   return (
     <div id="about">
-      <section className="bg-gradient-to-b from-gray-100 to-white py-16 relative overflow-hidden">
-        {/* Background decoration */}
-        <motion.div 
-          className="absolute inset-0 opacity-10"
-          initial={{ backgroundPosition: "0% 0%" }}
-          animate={{ backgroundPosition: "100% 100%" }}
-          transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
+      <section className="py-16 relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+        {/* Mesh Gradient Background */}
+        <motion.div
+          className="absolute inset-0"
+          initial={{ opacity: 0 }}
+          animate={{ 
+            opacity: [0.3, 0.5, 0.3],
+            background: [
+              "conic-gradient(from 0deg at 50% 50%, #790909 0deg, #5e0014 90deg, #790909 180deg, #5e0014 270deg)",
+              "conic-gradient(from 90deg at 50% 50%, #5e0014 0deg, #790909 90deg, #5e0014 180deg, #790909 270deg)",
+              "conic-gradient(from 180deg at 50% 50%, #790909 0deg, #5e0014 90deg, #790909 180deg, #5e0014 270deg)",
+            ]
+          }}
+          transition={{ 
+            duration: 15,
+            repeat: Infinity,
+            repeatType: "reverse",
+            ease: "linear"
+          }}
           style={{
-            backgroundImage: "linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000)",
-            backgroundSize: "60px 60px",
-            backgroundPosition: "0 0, 30px 30px"
+            filter: "blur(100px)",
+            opacity: 0.07
+          }}
+        />
+
+        {/* Moving Particles */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(20)].map((_, index) => (
+            <motion.div
+              key={index}
+              className="absolute w-1 h-1 bg-red-800"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                opacity: Math.random() * 0.3 + 0.1,
+              }}
+              animate={{
+                y: [0, Math.random() * 100 - 50],
+                x: [0, Math.random() * 100 - 50],
+                scale: [0, 1, 0],
+                opacity: [0, 0.5, 0]
+              }}
+              transition={{
+                duration: Math.random() * 3 + 2,
+                repeat: Infinity,
+                repeatType: "loop",
+                ease: "easeInOut",
+                delay: Math.random() * 2
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Glass morphism panels */}
+        <div className="absolute inset-0">
+          {[...Array(3)].map((_, index) => (
+            <motion.div
+              key={index}
+              className="absolute rounded-full"
+              style={{
+                background: "linear-gradient(225deg, rgba(121,9,9,0.03) 0%, rgba(94,0,20,0.03) 100%)",
+                backdropFilter: "blur(10px)",
+                width: Math.random() * 400 + 200,
+                height: Math.random() * 400 + 200,
+                left: `${Math.random() * 80}%`,
+                top: `${Math.random() * 80}%`,
+                border: "1px solid rgba(255,255,255,0.1)"
+              }}
+              animate={{
+                scale: [1, 1.1, 1],
+                rotate: [0, 180, 0],
+                opacity: [0.1, 0.15, 0.1]
+              }}
+              transition={{
+                duration: 15 + index * 5,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "linear"
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Subtle Grid Overlay */}
+        <div 
+          className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage: "linear-gradient(#790909 0.5px, transparent 0.5px), linear-gradient(to right, #790909 0.5px, transparent 0.5px)",
+            backgroundSize: "40px 40px"
           }}
         />
 
@@ -79,13 +157,13 @@ const About = () => {
                   className="mt-4 text-lg leading-relaxed"
                   variants={textVariants}
                 >
-                  I'm <span className="font-semibold text-[#790909]">Adil Allahdad</span>, a passionate web developer with expertise in the MERN stack, React, and Tailwind CSS. I specialize in building modern, responsive, and user-friendly web applications. I love transforming ideas into reality through code.
+                  I'm <span className="font-semibold bg-gradient-to-r from-purple-900 via-red-800 to-orange-900 text-transparent bg-clip-text">Adil Allahdad</span>, a passionate Software Engineer, MERN Stack Developer, and WordPress Developer focused on crafting modern, responsive, and user-centric web applications. I love transforming ideas into seamless digital experiences that are both functional and visually engaging.
                 </motion.p>
                 <motion.p 
                   className="mt-4 text-lg leading-relaxed"
                   variants={textVariants}
                 >
-                  Whether it's frontend development, backend solutions, or full-stack applications, I thrive on creating seamless digital experiences.
+                  Whether it's developing dynamic web platforms or creating scalable full-stack solutions, I’m driven by a deep commitment to clean code, thoughtful design, and continuous improvement. My work is rooted in the belief that great technology should feel effortless to use.
                 </motion.p>
               </motion.div>
 
@@ -100,9 +178,10 @@ const About = () => {
                 <motion.a
                   href="/assets/AdilCV.pdf"
                   download
-                  whileHover={{ scale: 1.05, backgroundColor: "#6b0707" }}
+                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 bg-[#790909] text-white px-4 py-2 rounded-lg shadow-lg transition-all duration-300"
+                  className="flex items-center gap-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-4 py-2 rounded-lg shadow-lg 
+                    transition-all duration-300 hover:from-yellow-500 hover:to-orange-600"
                 >
                   <FaDownload /> Download CV
                 </motion.a>
@@ -154,7 +233,7 @@ const About = () => {
               >
                 {/* Glowing effect */}
                 <motion.div
-                  className="absolute inset-0 bg-[#790909] rounded-lg blur-xl"
+                  className="absolute inset-0 bg-gradient-to-r from-purple-900 via-red-800 to-orange-900 rounded-lg blur-xl"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: isHovered ? 0.3 : 0 }}
                   transition={{ duration: 0.3 }}

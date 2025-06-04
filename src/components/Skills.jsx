@@ -1,5 +1,5 @@
 import React from "react";
-import html from "../assets/html.png"
+import { motion } from "framer-motion";
 
 const skills = [
     { name: "HTML", img: "https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" },
@@ -17,25 +17,80 @@ const skills = [
   
 
 const Skills = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const skillVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
     <section id="skills" className="py-16 bg-[#790909] text-white">
-      <div className="container mx-auto px-6 text-center">
-        <h2 className="text-3xl font-bold mb-8 text-white">My Skills</h2>
+      <motion.div
+        className="container mx-auto px-6 text-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={containerVariants}
+      >
+        <motion.h2
+          className="text-4xl font-bold mb-12 text-white"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          My Skills
+        </motion.h2>
         
-        {/* Responsive Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-8">
           {skills.map((skill, index) => (
-            <div key={index} className="flex flex-col items-center">
-              <img
-                src={skill.img}
-                alt={skill.name}
-                className="w-16 h-16 md:w-20 md:h-20 object-contain transition-transform transform hover:scale-110"
-              />
-              <p className="mt-2 text-sm md:text-base">{skill.name}</p>
-            </div>
+            <motion.div
+              key={index}
+              variants={skillVariants}
+              whileHover={{ scale: 1.1 }}
+              className="flex flex-col items-center p-4 rounded-lg bg-[#8a1111] hover:bg-[#9c1616] 
+                transition-colors duration-300 cursor-pointer"
+            >
+              <motion.div
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+                className="relative w-16 h-16 md:w-20 md:h-20 mb-4"
+              >
+                <img
+                  src={skill.img}
+                  alt={skill.name}
+                  className="w-full h-full object-contain"
+                  style={skill.style}
+                />
+              </motion.div>
+              <p className="text-sm md:text-base font-semibold">{skill.name}</p>
+              <div className="mt-2 w-full bg-[#6b0808] h-1 rounded-full overflow-hidden">
+                <motion.div
+                  className="h-full bg-white"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: "100%" }}
+                  transition={{ duration: 1, delay: index * 0.1 }}
+                />
+              </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

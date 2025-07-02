@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-scroll";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import cv from "../assets/AdilResume.pdf";
+import cv from "../assets/Adil_Allahdad-MERN_Stack_Developer_Resume.pdf"; // Update with your actual CV path
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);

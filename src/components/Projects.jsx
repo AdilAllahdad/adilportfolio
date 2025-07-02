@@ -1,103 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt, FaTimes } from "react-icons/fa";
-import frame from "../assets/Frame.png";
-import barbar from "../assets/barbar.jpg";
-import ticTacToe from "../assets/figmaTicTacToe.png";
-import barberFrame from "../assets/barberFrame.png";
-import FrameCar from "../assets/FrameCar.png";
-import FrameTic from "../assets/FrameTic1.png";
-import FrameRock from "../assets/FrameRock.png";
-import FramePortfolio from "../assets/FramePortfolio.png";
-import FrameAgency from "../assets/FrameAgency.png";
-
-const projects = [
-  {
-    name: "E-Commerce Website",
-    category: "MERN Stack",
-    img: frame,
-    description:
-      "A full-stack e-commerce platform with authentication and cart functionality.",
-    liveDemo: "https://your-ecommerce-demo.com",
-  },
-  {
-    name: "Portfolio Website",
-    category: "React & Tailwind",
-    img: FramePortfolio,
-    description:
-      "A sleek and responsive portfolio to showcase your projects and skills.",
-    liveDemo: "https://your-portfolio-demo.com",
-  },
-  {
-    name: "Blog CMS",
-    category: "WordPress",
-    img: barberFrame,
-    description:
-      "A custom blog CMS powered by WordPress with a dynamic content system.",
-    liveDemo: "https://your-blog-demo.com",
-  },
-  {
-    name: "Task Manager",
-    category: "JavaScript",
-    img: FrameTic,
-    description:
-      "A JavaScript-powered task manager with local storage support.",
-    liveDemo: "https://tic-tac-toe-chi-eight-86.vercel.app/",
-  },
-  {
-    name: "Dashboard UI",
-    category: "React & Material UI",
-    img: FrameCar,
-    description: "A modern admin dashboard with charts and authentication.",
-    liveDemo: "https://shimlataxi.com/",
-  },
-  {
-    name: "Weather App",
-    category: "JavaScript & API",
-    img: FrameRock,
-    description: "A real-time weather app fetching data from OpenWeather API.",
-    liveDemo: "https://rock-paper-scissors-hazel-theta.vercel.app/",
-  },
-  {
-    name: "Chat App",
-    category: "MERN Stack",
-    img: FrameAgency,
-    description:
-      "A real-time chat application with authentication and WebSocket.",
-    liveDemo: "https://your-chatapp-demo.com",
-  },
-  {
-    name: "Finance Tracker",
-    category: "React & Firebase",
-    img: "https://source.unsplash.com/400x250/?finance,app",
-    description: "A finance tracker that allows users to track their expenses.",
-    liveDemo: "https://your-finance-demo.com",
-  },
-];
+import { projects, categories } from "../data/projectsData";
 
 const Projects = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedProject, setSelectedProject] = useState(null);
   const [filter, setFilter] = useState("All");
+  const [playingVideo, setPlayingVideo] = useState(null);
   const projectsPerPage = 6;
-
-  const categories = [
-    "All",
-    "MERN Stack",
-    "React & Tailwind",
-    "WordPress",
-    "JavaScript",
-  ];
 
   const filteredProjects = projects.filter((project) =>
     filter === "All" ? true : project.category === filter
   );
 
+  // Debug logging
+  console.log("Current filter:", filter);
+  console.log("Total projects:", projects.length);
+  console.log("Filtered projects:", filteredProjects.length);
+  console.log("Filtered project names:", filteredProjects.map(p => p.name));
+
   const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+  
   const selectedProjects = filteredProjects.slice(
     currentPage * projectsPerPage,
     (currentPage + 1) * projectsPerPage
   );
+
+  // Reset to first page when filter changes
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [filter]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -195,7 +128,6 @@ const Projects = () => {
               key={category}
               onClick={() => {
                 setFilter(category);
-                setCurrentPage(0);
               }}
               className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 cursor-pointer ${
                 filter === category
@@ -215,12 +147,22 @@ const Projects = () => {
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
           variants={containerVariants}
         >
-          <AnimatePresence mode="wait">
-            {selectedProjects.map((project, index) => (
+          {selectedProjects.length === 0 ? (
+            <motion.div 
+              className="col-span-full text-center text-white py-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              <p className="text-xl">No projects found for "{filter}" category.</p>
+              <p className="text-sm mt-2 opacity-75">Try selecting a different category.</p>
+            </motion.div>
+          ) : (
+            selectedProjects.map((project, index) => (
               <motion.div
-                key={project.name}
-                layoutId={`project-${project.name}`}
+                key={`${filter}-${project.name}`}
                 variants={projectVariants}
+                initial="hidden"
+                animate="visible"
                 whileHover={{ y: -10 }}
                 className="relative group"
               >
@@ -233,11 +175,36 @@ const Projects = () => {
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <img
-                      src={project.img}
-                      alt={project.name}
-                      className="w-full h-full object-cover"
-                    />
+                    {project.video ? (
+                      <div className="relative w-full h-full">
+                        <video
+                          src={project.video}
+                          poster={project.thumbnail}
+                          className="w-full h-full object-cover"
+                          muted
+                          loop
+                          playsInline
+                          onMouseEnter={(e) => {
+                            e.target.play();
+                            setPlayingVideo(project.name);
+                          }}
+                          onMouseLeave={(e) => {
+                            e.target.pause();
+                            e.target.currentTime = 0;
+                            setPlayingVideo(null);
+                          }}
+                        />
+                        <div className="absolute top-2 right-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded text-xs">
+                          VIDEO
+                        </div>
+                      </div>
+                    ) : (
+                      <img
+                        src={project.img}
+                        alt={project.name}
+                        className="w-full h-full object-cover"
+                      />
+                    )}
                     <motion.div
                       className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
                     >
@@ -274,8 +241,8 @@ const Projects = () => {
                   </div>
                 </motion.div>
               </motion.div>
-            ))}
-          </AnimatePresence>
+            ))
+          )}
         </motion.div>
 
         {/* Modal for Project Details */}
@@ -299,11 +266,27 @@ const Projects = () => {
                 >
                   <FaTimes size={24} />
                 </button>
-                <img
-                  src={selectedProject.img}
-                  alt={selectedProject.name}
-                  className="w-full h-64 object-cover"
-                />
+                {selectedProject.video ? (
+                  <div className="relative">
+                    <video
+                      src={selectedProject.video}
+                      controls
+                      autoPlay
+                      muted
+                      loop
+                      className="w-full h-64 object-cover"
+                    />
+                    <div className="absolute top-2 left-2 bg-black bg-opacity-70 text-white px-3 py-1 rounded text-sm">
+                      Animation Video
+                    </div>
+                  </div>
+                ) : (
+                  <img
+                    src={selectedProject.img}
+                    alt={selectedProject.name}
+                    className="w-full h-64 object-cover"
+                  />
+                )}
                 <div className="p-6">
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">
                     {selectedProject.name}
@@ -344,9 +327,9 @@ const Projects = () => {
               <motion.button
                 key={i}
                 onClick={() => setCurrentPage(i)}
-                className={`px-4 py-2 rounded-lg text-black shadow-lg transition-all duration-300 cursor-pointer ${
+                className={`px-4 py-2 rounded-lg shadow-lg transition-all duration-300 cursor-pointer ${
                   currentPage === i
-                    ? "bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 scale-105"
+                    ? "bg-gradient-to-r from-yellow-400 to-orange-500 text-black hover:from-yellow-500 hover:to-orange-600 scale-105"
                     : "bg-white/10 text-white hover:bg-white/20"
                 }`}
                 whileHover={{ scale: 1.1 }}

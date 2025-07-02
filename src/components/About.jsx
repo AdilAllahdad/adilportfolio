@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FaLinkedin, FaGithub, FaInstagram, FaDownload } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import myimg from "../assets/myimg.jpeg";
+import cv from "../assets/Adil_Allahdad-MERN_Stack_Developer_Resume.pdf"; // Update with your actual CV path
+
 
 const About = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -176,7 +178,9 @@ const About = () => {
                 viewport={{ once: true }}
               >
                 <motion.a
-                  href="/assets/AdilCV.pdf"
+                  href={cv} // Update with your actual CV path
+                  target="_blank"
+                  rel="noopener noreferrer"
                   download
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

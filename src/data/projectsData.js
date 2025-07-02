@@ -58,14 +58,6 @@ export const projects = [
       "A modern barber shop website with booking and service management.",
     liveDemo: "https://www.linkedin.com/in/adil-allahdad-web-developer/",
   },
-//   {
-//     name: "Task Manager",
-//     category: "JavaScript",
-//     img: FrameTic,
-//     description:
-//       "A JavaScript-powered task manager with local storage support.",
-//     liveDemo: "https://tic-tac-toe-chi-eight-86.vercel.app/",
-//   },
   {
     name: "Car Booking",
     category: "WordPress",
@@ -78,6 +70,13 @@ export const projects = [
     category: "JavaScript",
     img: Tictactoe,
     description: "A classic Tic Tac Toe game with a twist, featuring an AI opponent.",
+    liveDemo: "https://tic-tac-toe-chi-eight-86.vercel.app/",
+  },
+  {
+    name: "Rock Paper Scissors",
+    category: "JavaScript",
+    img: FrameRock,
+    description: "A classic Rock Paper Scissors game with a twist, featuring an AI opponent.",
     liveDemo: "https://rock-paper-scissors-hazel-theta.vercel.app/",
   },
   {

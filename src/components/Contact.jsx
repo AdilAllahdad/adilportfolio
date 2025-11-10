@@ -3,6 +3,7 @@ import { FaLinkedin, FaGithub, FaInstagram, FaEnvelope, FaPaperPlane } from "rea
 import { motion, AnimatePresence } from "framer-motion";
 import { toast, Toaster } from "react-hot-toast";
 import emailjs from '@emailjs/browser';
+import LightRays from './LightRays';
 
 const Contact = () => {
   const form = useRef();
@@ -72,15 +73,30 @@ const Contact = () => {
   
   const socialLinks = [
     { icon: FaEnvelope, href: "mailto:adil.allahdad619@gmail.com", color: "hover:text-yellow-400" },
-    { icon: FaLinkedin, href: "https://www.linkedin.com/in/adil-allahdad-web-developer/", color: "hover:text-blue-500" },
-    { icon: FaGithub, href: "https://github.com/AdilAllahdad", color: "hover:text-purple-500" },
-    { icon: FaInstagram, href: "https://www.instagram.com/adil.web.dev/", color: "hover:text-pink-500" },
+    { icon: FaLinkedin, href: "https://www.linkedin.com/in/adil-allahdad-web-developer/", color: "hover:text-yellow-400" },
+    { icon: FaGithub, href: "https://github.com/AdilAllahdad", color: "hover:text-yellow-400" },
+    { icon: FaInstagram, href: "https://www.instagram.com/adil.web.dev/", color: "hover:text-yellow-400" },
   ];
 
   return (
-    <section id="contact" className="py-16 bg-black text-white min-h-screen flex items-center">
+    <section id="contact" className="relative py-16 bg-black text-white min-h-screen flex items-center">
+      {/* LightRays background - pointer-events disabled so underlying form stays clickable */}
+      <div className="absolute inset-0 pointer-events-none">
+        <LightRays
+          raysOrigin="bottom-center"
+          raysColor="#ffffff"
+          raysSpeed={1.5}
+          lightSpread={0.8}
+          rayLength={3}
+          followMouse={true}
+          mouseInfluence={0.1}
+          noiseAmount={0.1}
+          distortion={0.05}
+          className="custom-rays pointer-events-none"
+        />
+      </div>
       <Toaster position="top-right" />
-      <div className="container mx-auto px-6 max-w-4xl">
+  <div className="container mx-auto px-6 max-w-4xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -178,7 +194,7 @@ const Contact = () => {
               type="submit"
               disabled={isSubmitting}
               className={`w-full py-3 px-6 rounded-lg bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-semibold 
-                flex items-center justify-center space-x-2 hover:from-yellow-500 hover:to-orange-600 
+                flex items-center justify-center space-x-2 hover:from-yellow-500 hover:to-orange-600 cursor-pointer
                 transition-all duration-300 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
             >
               <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>

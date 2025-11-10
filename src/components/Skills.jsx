@@ -1,12 +1,12 @@
 import React from "react";
-import { motion } from "framer-motion";
+import LogoLoop from "./LogoLoop";
 
 const skills = [
     { name: "HTML", img: "https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" },
     { name: "CSS", img: "https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" },
     { name: "JavaScript", img: "https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" },
     { name: "React", img: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" },
-    { name: "Next.js", img: "https://seeklogo.com/images/N/next-js-icon-logo-EE302D5DBD-seeklogo.com.png", style: { filter: "invert(1)" } },
+    { name: "Next.js", img: "https://avatars.githubusercontent.com/u/126103961?s=200&v=4", style: { filter: "invert(1)" } },
     { name: "Firebase", img: "https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" },    { name: "Tailwind", img: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" },    { name: "DaisyUI", img: "https://cdn.jsdelivr.net/gh/saadeghi/files@main/daisyui/logo-4.svg", style: { filter: "invert(1)" } },
     { name: "Bootstrap", img: "https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" },
     { name: "Node.js", img: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" },
@@ -17,80 +17,41 @@ const skills = [
   ];
   
 
-const Skills = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
+// Use `skills` image entries as logos for LogoLoop
+const logoImages = skills.map(s => ({
+  src: s.img,
+  alt: s.name,
+  title: s.name
+}));
 
-  const skillVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    }
-  };
+
+const Skills = () => {
+  // Framer Motion removed — keep static layout and simple Tailwind hover effects
 
   return (
-    <section id="skills" className="py-16 bg-gradient-to-br from-purple-900 via-red-800 to-orange-900 text-white">
-      <motion.div
-        className="container mx-auto px-6 text-center"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={containerVariants}
-      >
-        <motion.h2
-          className="text-4xl font-bold mb-12 text-white"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          My Skills
-        </motion.h2>
+     <div id="skills" className="sm:pt-20 bg-black">
+    <section  className="bg-black text-white">
+      <div className="mx-auto text-center">
+        <h2 className="text-4xl font-bold mb-12 text-white">My Skills</h2>
+       <div style={{ height: '200px', position: 'relative', overflow: 'hidden'}}>
+      {/* Basic horizontal loop */}
+      <LogoLoop
+        logos={logoImages}
+        speed={120}
+        direction="left"
+        logoHeight={88}
+        gap={40}
+        hoverSpeed={0}
+        scaleOnHover
+        fadeOut
+        fadeOutColor="#ffffff"
+        ariaLabel="Technology partners"
+      />
+    </div>
         
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-8">
-          {skills.map((skill, index) => (
-            <motion.div
-              key={index}
-              variants={skillVariants}
-              whileHover={{ scale: 1.1 }}              className="flex flex-col items-center p-4 rounded-lg bg-red-900/80 hover:bg-red-800
-                transition-colors duration-300 cursor-pointer shadow-lg"
-            >
-              <motion.div
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.6 }}
-                className="relative w-16 h-16 md:w-20 md:h-20 mb-4"
-              >
-                <img
-                  src={skill.img}
-                  alt={skill.name}
-                  className="w-full h-full object-contain"
-                  style={skill.style}
-                />
-              </motion.div>
-              <p className="text-sm md:text-base font-semibold">{skill.name}</p>              <div className="mt-2 w-full bg-red-950 h-1 rounded-full overflow-hidden">
-                <motion.div
-                  className="h-full bg-red-400"
-                  initial={{ width: 0 }}
-                  whileInView={{ width: "100%" }}
-                  transition={{ duration: 1, delay: index * 0.1 }}
-                />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+      </div>
     </section>
+    </div>
   );
 };
 

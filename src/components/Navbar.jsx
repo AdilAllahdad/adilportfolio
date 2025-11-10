@@ -12,7 +12,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
-      setScrolled(offset > 50);
+      setScrolled(offset > 500);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -66,7 +66,7 @@ const Navbar = () => {
       variants={containerVariants}
       className={`fixed w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-gradient-to-r from-purple-900 via-red-800 to-orange-900 shadow-lg backdrop-blur-lg bg-opacity-90"
+          ? "bg-black"
           : "bg-transparent"
       }`}
     >
@@ -163,9 +163,9 @@ const Navbar = () => {
               animate="open"
               exit="closed"
               variants={mobileMenuVariants}
-              className="absolute top-0 left-0 right-0 min-h-screen bg-[#790909] bg-opacity-95 backdrop-blur-lg md:hidden"
+              className="absolute top-0 left-0 right-0 min-h-screen bg-black bg-opacity-95 backdrop-blur-lg md:hidden"
             >
-              <div className="container mx-auto px-6 pt-24 pb-6">
+              <div className="container mx-auto px-6 sm:pt-24 pb-6">
                 <motion.ul
                   className="flex flex-col space-y-4"
                   variants={containerVariants}

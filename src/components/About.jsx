@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaLinkedin, FaGithub, FaInstagram, FaDownload } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
-import myimg from "../assets/myimg.jpeg";
+import myimg from "../assets/aboutimg.jpg"; // Update with your actual image path
 import cv from "../assets/Adil_Allahdad-MERN_Stack_Developer_Resume.pdf"; // Update with your actual CV path
 import LightRays from './LightRays';
 import { div } from "framer-motion/client";

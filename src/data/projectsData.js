@@ -15,9 +15,30 @@ import animatedVideo1 from "../assets/animatedVideo1.mp4";
 import AnimatedVideo2 from "../assets/AnimatedVideo2.mp4";
 import Tictactoe from "../assets/Tictactoe.png";
 import lemaraLogo from "../assets/lemaraLogo.png";
+import buildForce from "../assets/buildForce.png";
+import sehatyar from "../assets/sehatyar.png";
+// import x
+import { b } from "framer-motion/client";
 
 // Projects data array
 export const projects = [
+
+  {
+    name: "Build Force",
+    category: "Full Stack",
+    img: buildForce,
+    description:
+      "A full-stack construction platform with a modern UI. It includes dashboard, project management, and collaboration features.",
+    liveDemo: "https://buildforce.vercel.app/auth/register",
+  },
+  {
+    name: "Sehatyar",
+    category: "Full Stack",
+    img: sehatyar,
+    description:
+      "A full-stack hospital management platform with a modern UI. It includes dashboard, patient management, and appointment scheduling features.",
+    liveDemo: "sehatyar.vercel.app",
+  },
   {
     name: "S4",
     category: "MERN Stack",

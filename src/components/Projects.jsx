@@ -132,7 +132,7 @@ const Projects = () => {
                         className="w-full h-full object-cover"
                       />
                     )}
-                    <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-60 transition-opacity duration-300 flex items-center justify-center">
                       {project.liveDemo ? (
                         <a
                           href={project.liveDemo}
@@ -140,7 +140,7 @@ const Projects = () => {
                           rel="noopener noreferrer"
                           className="bg-white text-black px-6 py-2 rounded-full font-semibold transform hover:scale-105 transition-transform inline-flex items-center gap-2"
                         >
-                          <FaExternalLinkAlt /> Live Demo
+                          <FaExternalLinkAlt /> 
                         </a>
                       ) : (
                         <button className="bg-white text-black px-6 py-2 rounded-full font-semibold">No Demo</button>

@@ -43,7 +43,7 @@ const Hero = () => {
 
             <h2 className="text-3xl md:text-5xl font-bold text-yellow-300 mt-2">
               <Typewriter
-                words={["Web Developer", "MERN Stack Developer", "WordPress Developer"]}
+                words={["Web Developer", " MERN Stack Developer", "WordPress Developer"]}
                 loop={true}
                 cursor
                 cursorStyle="_"

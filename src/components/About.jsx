@@ -53,7 +53,7 @@ const About = () => {
   };
 
   return (
-    <div id="about" className="sm:py-20 bg-black">
+    <div id="about" className=" bg-black">
     <div>
       <section className="relative overflow-hidden bg-black">
         {/* Mesh Gradient Background */}

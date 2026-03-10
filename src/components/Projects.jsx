@@ -31,13 +31,33 @@ const Projects = () => {
     setCurrentPage(0);
   }, [filter]);
 
+  // Scroll to top of projects section when page changes
+  useEffect(() => {
+    const projectsElement = document.getElementById('projects');
+    if (projectsElement) {
+      projectsElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [currentPage]);
+
+  const handlePageChange = (pageIndex) => {
+    setCurrentPage(pageIndex);
+  };
+
+  const handleFilterChange = (category) => {
+    setFilter(category);
+    const projectsElement = document.getElementById('projects');
+    if (projectsElement) {
+      projectsElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   // motion/animation removed — static rendering only
 
   return (
      <div id="projects" className="sm:py-20 bg-black">
     <section
       
-      className="py-16 min-h-screen relative overflow-hidden "
+      className=""
     >
      <div style={{ width: '100%', height: '600px', position: 'absolute' }}>
   <LightRays
@@ -76,9 +96,7 @@ const Projects = () => {
           {categories.map((category) => (
             <button
               key={category}
-              onClick={() => {
-                setFilter(category);
-              }}
+              onClick={() => handleFilterChange(category)}
               className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 cursor-pointer ${
                 filter === category
                   ? "bg-gradient-to-r from-yellow-400 to-orange-500 text-black shadow-lg hover:from-yellow-500 hover:to-orange-600"
@@ -107,20 +125,29 @@ const Projects = () => {
                         <video
                           src={project.video}
                           poster={project.thumbnail}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover cursor-pointer"
                           muted
                           loop
                           playsInline
-                          onMouseEnter={(e) => {
-                            e.target.play();
-                            setPlayingVideo(project.name);
-                          }}
-                          onMouseLeave={(e) => {
-                            e.target.pause();
-                            e.target.currentTime = 0;
-                            setPlayingVideo(null);
+                          onClick={(e) => {
+                            if (e.target.paused) {
+                              e.target.play();
+                              setPlayingVideo(project.name);
+                            } else {
+                              e.target.pause();
+                              setPlayingVideo(null);
+                            }
                           }}
                         />
+                        {playingVideo !== project.name && (
+                          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                            <div className="bg-black bg-opacity-60 rounded-full p-4">
+                              <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                              </svg>
+                            </div>
+                          </div>
+                        )}
                         <div className="absolute top-2 right-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded text-xs">
                           VIDEO
                         </div>
@@ -132,20 +159,18 @@ const Projects = () => {
                         className="w-full h-full object-cover"
                       />
                     )}
-                    <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-60 transition-opacity duration-300 flex items-center justify-center">
-                      {project.liveDemo ? (
+                    {!project.video && (
+                      <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-60 transition-opacity duration-300 flex items-center justify-center">
                         <a
-                          href={project.liveDemo}
+                          href={project.liveDemo || "https://www.linkedin.com/in/adil-allahdad-web-developer/"}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="bg-white text-black px-6 py-2 rounded-full font-semibold transform hover:scale-105 transition-transform inline-flex items-center gap-2"
                         >
                           <FaExternalLinkAlt /> 
                         </a>
-                      ) : (
-                        <button className="bg-white text-black px-6 py-2 rounded-full font-semibold">No Demo</button>
-                      )}
-                    </div>
+                      </div>
+                    )}
                   </div>
                   <div className="p-6">
                     <h3 className="text-xl font-bold text-white mb-2">{project.name}</h3>
@@ -153,7 +178,7 @@ const Projects = () => {
                     <p className="text-white text-sm mb-4">{project.description}</p>
                     <div className="flex gap-4">
                       <a
-                        href={project.liveDemo}
+                        href={project.liveDemo || "https://www.linkedin.com/in/adil-allahdad-web-developer/"}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center text-sm font-semibold hover:opacity-80 transition-opacity text-white"
@@ -176,7 +201,7 @@ const Projects = () => {
             {Array.from({ length: totalPages }, (_, i) => (
               <button
                 key={i}
-                onClick={() => setCurrentPage(i)}
+                onClick={() => handlePageChange(i)}
                 className={`px-4 py-2 rounded-lg shadow-lg transition-all duration-300 cursor-pointer ${
                   currentPage === i
                     ? "bg-gradient-to-r from-yellow-400 to-orange-500 text-black hover:from-yellow-500 hover:to-orange-600"

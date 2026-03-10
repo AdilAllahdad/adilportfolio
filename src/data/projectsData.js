@@ -41,7 +41,7 @@ export const projects = [
   },
   {
     name: "S4",
-    category: "MERN Stack",
+    category: "Full Stack",
     img: s4,
     description:
       "A full-stack Job seeker & Job provider platform. It includes user authentication, job listings, and application management.",
@@ -49,7 +49,7 @@ export const projects = [
   },
    {
     name: "Lemara Commercial",
-    category: "MERN Stack",
+    category: "Full Stack",
     img: lemaraLogo,
     description:
       "Access exclusive properties and manage your commercial real estate portfolio with Lemara Commercial's professional platform.",
@@ -57,7 +57,7 @@ export const projects = [
   },
   {
     name: "E-Commerce Website",
-    category: "MERN Stack",
+    category: "React & Tailwind",
     img: frame,
     description:
       "A full-stack e-commerce platform with authentication and cart functionality.",
@@ -129,7 +129,7 @@ export const projects = [
 // Categories for filtering
 export const categories = [
   "All",
-  "MERN Stack",
+  "Full Stack",
   "React & Tailwind",
   "WordPress",
   "JavaScript",

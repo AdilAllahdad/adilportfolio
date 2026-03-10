@@ -31,16 +31,12 @@ const Projects = () => {
     setCurrentPage(0);
   }, [filter]);
 
-  // Scroll to top of projects section when page changes
-  useEffect(() => {
+  const handlePageChange = (pageIndex) => {
+    setCurrentPage(pageIndex);
     const projectsElement = document.getElementById('projects');
     if (projectsElement) {
       projectsElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-  }, [currentPage]);
-
-  const handlePageChange = (pageIndex) => {
-    setCurrentPage(pageIndex);
   };
 
   const handleFilterChange = (category) => {

@@ -31,8 +31,8 @@ const Skills = () => {
   return (
      <div id="skills" className="sm:pt-20 bg-black">
     <section  className="bg-black text-white">
-      <div className="mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-12 text-white">My Skills</h2>
+      <div className="mx-auto text-center ">
+        <h2 className="text-4xl font-bold sm:mb-12 text-white">My Skills</h2>
        <div style={{ height: '200px', position: 'relative', overflow: 'hidden'}}>
       {/* Basic horizontal loop */}
       <LogoLoop

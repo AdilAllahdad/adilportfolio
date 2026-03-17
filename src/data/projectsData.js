@@ -17,6 +17,10 @@ import Tictactoe from "../assets/Tictactoe.png";
 import lemaraLogo from "../assets/lemaraLogo.png";
 import buildForce from "../assets/buildForce.png";
 import sehatyar from "../assets/sehatyar.png";
+import fitness from "../assets/fitness.png";
+import RoadWordpress from "../assets/RoadWordpress.png";
+import EducationWordpress from "../assets/EducationWordpress.png";
+import ECommerceWordpress from "../assets/ECommerceWordpress.png";
 // import x
 import { b } from "framer-motion/client";
 
@@ -72,6 +76,32 @@ export const projects = [
     liveDemo: "https://your-portfolio-demo.com",
   },
   {
+    name: "Asphalt Paving",
+    category: "WordPress",
+    img: RoadWordpress,
+    description:
+      "A modern asphalt paving website, with clean design and user-friendly interface.",
+    liveDemo: "https://www.linkedin.com/in/adil-allahdad-web-developer/",
+  },
+
+  {
+    name: "Education WordPress",
+    category: "WordPress",
+    img: EducationWordpress,
+    description:
+      "A modern education website, with clean design and user-friendly interface.",
+    liveDemo: "https://www.linkedin.com/in/adil-allahdad-web-developer/",
+  },
+  {
+    name: "E-Commerce WordPress",
+    category: "WordPress",
+    img: ECommerceWordpress,
+    description:
+      "A modern e-commerce website, with clean design and user-friendly interface.",
+    liveDemo: "https://www.linkedin.com/in/adil-allahdad-web-developer/",
+  },
+  
+  {
     name: "Barber Shop",
     category: "WordPress",
     img: barberFrame,
@@ -117,7 +147,7 @@ export const projects = [
     liveDemo: "https://your-animation-demo.com",
   },
   {
-    name: "Katana",
+    name: "KIM",
     category: "Animations",
     video: AnimatedVideo2,
     thumbnail: Animation2,

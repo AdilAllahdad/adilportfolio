@@ -116,6 +116,6 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'casGill Sans', 'Gill Sans MTCalibri, 'Trebuchet MS;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
 }

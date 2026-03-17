@@ -20,7 +20,7 @@ import sehatyar from "../assets/sehatyar.png";
 import fitness from "../assets/fitness.png";
 import RoadWordpress from "../assets/RoadWordpress.png";
 import EducationWordpress from "../assets/EducationWordpress.png";
-import ECommerceWordpress from "../assets/ECommerceWordpress.png";
+import ECommerceWordpress from "../assets/eCommerceWordpress.png";
 // import x
 import { b } from "framer-motion/client";
 

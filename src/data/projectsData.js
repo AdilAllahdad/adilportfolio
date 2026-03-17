@@ -20,7 +20,7 @@ import sehatyar from "../assets/sehatyar.png";
 import fitness from "../assets/fitness.png";
 import RoadWordpress from "../assets/RoadWordpress.png";
 import EducationWordpress from "../assets/EducationWordpress.png";
-import ECommerceWordpress from "../assets/eCommerceWordpress.png";
+import eCommerceWordpress from "../assets/eCommerceWordpress.png";
 // import x
 import { b } from "framer-motion/client";
 
@@ -83,7 +83,14 @@ export const projects = [
       "A modern asphalt paving website, with clean design and user-friendly interface.",
     liveDemo: "https://www.linkedin.com/in/adil-allahdad-web-developer/",
   },
-
+{
+    name: "Fitness",
+    category: "WordPress",
+    img: fitness,
+    description:
+      "A Fitness website, with clean design and user-friendly interface.",
+    liveDemo: "https://www.linkedin.com/in/adil-allahdad-web-developer/",
+  },
   {
     name: "Education WordPress",
     category: "WordPress",
@@ -95,7 +102,7 @@ export const projects = [
   {
     name: "E-Commerce WordPress",
     category: "WordPress",
-    img: ECommerceWordpress,
+    img: eCommerceWordpress,
     description:
       "A modern e-commerce website, with clean design and user-friendly interface.",
     liveDemo: "https://www.linkedin.com/in/adil-allahdad-web-developer/",
